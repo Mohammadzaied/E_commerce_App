@@ -1,0 +1,9 @@
+.carousel-indicators button {
+  height: 1rem !important;
+  width: 1rem !important;
+  border-radius: 50% !important;
+}
+
+.carousel-indicators button.active {
+  background-color: var(--color) !important;
+}

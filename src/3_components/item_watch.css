@@ -1,0 +1,12 @@
+
+#carouselExampleIndicators1{
+    height: 250px;
+}
+.show-watch img{
+    width: 100%;
+    height: 250px;
+}
+.items-watch{
+    z-index: 10000000;
+}
+

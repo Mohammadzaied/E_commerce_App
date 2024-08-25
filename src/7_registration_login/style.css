@@ -1,0 +1,17 @@
+/* :root{
+    --color:rgb(151, 35, 35);
+} */
+
+
+.login{
+    color:rgb(151, 35, 35);
+    font-Size: 25px;
+    text-decoration: none;
+
+}
+
+.login h3{
+    color: rgb(151, 35, 35);
+    font-Size: 40px;
+
+}

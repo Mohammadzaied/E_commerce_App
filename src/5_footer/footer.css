@@ -1,0 +1,14 @@
+.footer{
+    margin-top: 80px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background:rgb(151, 35, 35);
+}
+
+.footer img{
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}

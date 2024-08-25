@@ -1,0 +1,68 @@
+:root{
+    --color:rgb(151, 35, 35);
+}
+.navbar{
+    background-color:var( --color);
+    
+}
+
+.search{
+    position: relative;
+    min-width: 200px;
+}
+.search button{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.search button i{
+    font-size: 15;
+}
+
+.nav-item a:hover{
+    color: white;
+}
+
+
+
+.navbar-brand:hover,.navbar-brand{
+    color: white;
+}
+
+.nav-item .nav-link{
+    color: white;
+    font-style: italic;
+}
+.nav-item .nav-link.active{
+    color:black;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.navbar-brand img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.nav-link{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.cart i{
+    font-size: 35px;
+}
+
+
+.iconn{
+    position: relative;
+}
+.iconn .num{
+    font-size: 14px;
+    position: absolute;
+    left: -10px;
+    top: 0;
+}
+
