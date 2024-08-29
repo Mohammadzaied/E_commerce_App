@@ -19,33 +19,18 @@ import { fetchClothes, fetchhome, fetchMobiles, fetchWatches } from "./6_redux_s
 import { user_data } from "./6_redux_state_manegment/userReducer";
 import { jwtDecode } from "jwt-decode";
 
-const useRouteChange = (callback) => {
-  const location = useLocation();
-  const navigate = useNavigate();
+// const useRouteChange = (callback) => {
+//   const location = useLocation();
+//   console.log("enter");
 
-  useEffect(() => {
-    callback(location);
-  }, [location, callback, navigate]);
-};
-
-const isTokenExpired = (token) => {
-  if (!token) {
-    return true;
-  }
-  try {
-    const decodedToken = jwtDecode(token);
-
-    const currentTime = Date.now() / 1000;
-    //console.log(decodedToken.exp < currentTime);
-
-    return decodedToken.exp < currentTime;
-  } catch (error) {
-    console.error("Error decoding token:", error);
-    return true;
-  }
-};
+//   useEffect(() => {
+//     callback(location);
+//   }, [location, callback]);
+// };
 
 const AppRoutes = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { home, clothes, mobiles, watches } = useSelector((state) => state.product);
   const { isAuthenticated } = useSelector((state) => state.user.login);
@@ -53,14 +38,31 @@ const AppRoutes = () => {
   const { token } = useSelector((state) => state.user.login);
   const { status } = useSelector((state) => state.user.product_watch);
 
-  useRouteChange((location) => {
-    //console.log("Navigated to:", location.pathname);
+  const isTokenExpired = (token) => {
+    if (!token) {
+      return true;
+    }
+    try {
+      const decodedToken = jwtDecode(token);
+
+      const currentTime = Date.now() / 1000;
+      //console.log(decodedToken.exp < currentTime);
+
+      return decodedToken.exp < currentTime;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return true;
+    }
+  };
+
+  useEffect(() => {
+    console.log("Navigated to:", location.pathname);
 
     if (isTokenExpired(token) && token) {
       localStorage.clear();
-      window.location.href = "/login";
+      navigate("/login");
     }
-  });
+  }, [location, token, navigate]);
 
   useEffect(() => {
     if (home.status === "idle") {
@@ -80,7 +82,6 @@ const AppRoutes = () => {
     }
   }, [clothes.status, dispatch, home.status, id_user, isAuthenticated, mobiles.status, status, watches.status]);
 
-  const location = useLocation();
   const iscart = location.pathname === "/cart";
   const isdetails = location.pathname.startsWith("/details");
   const isLogin = location.pathname === "/login";

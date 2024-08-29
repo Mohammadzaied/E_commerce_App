@@ -28,8 +28,8 @@ function Login() {
   const validateForm = (event) => {
     event.preventDefault();
 
-    emailInput.current.classList.remove("is-invalid");
-    passwordInput.current.classList.remove("is-invalid");
+    // emailInput.current.classList.remove("is-invalid");
+    // passwordInput.current.classList.remove("is-invalid");
 
     if (!email.trim()) {
       emailInput.current.classList.add("is-invalid");
@@ -45,12 +45,14 @@ function Login() {
   };
 
   useEffect(() => {
-    if (error === "user not found") emailInput.current.classList.add("is-invalid");
-    else if (error === "password wrong") passwordInput.current.classList.add("is-invalid");
+    if (error === "Email or Password invalid") passwordInput.current.classList.add("is-invalid");
+
     if (isAuthenticated) {
+      emailInput.current.classList.remove("is-invalid");
+      passwordInput.current.classList.remove("is-invalid");
       navigate("/");
     }
-  }, [isAuthenticated, navigate, error]);
+  }, [error, isAuthenticated, navigate]);
 
   return (
     <div>
@@ -81,7 +83,7 @@ function Login() {
                         </label>
                         <div className="input-group has-validation">
                           <input onChange={handleInputChange} type="email" name="email" className="form-control" id="email" required="" ref={emailInput}></input>
-                          <div className="invalid-feedback">{error === "user not found" ? "User not Registration" : "Please set valid email."}</div>
+                          <div className="invalid-feedback">{"Please set valid email."}</div>
                         </div>
                       </div>
 
@@ -91,7 +93,7 @@ function Login() {
                         </label>
                         <input onChange={handleInputChange} type="password" name="password" className="form-control" id="yourPassword" required="" ref={passwordInput}></input>
                         <div className="invalid-feedback">
-                          {error === "password wrong" ? "Password wrong" : null}
+                          {error === "Email or Password invalid" ? "Email or Password invalid" : null}
                           {password.length === 0 ? " Please enter your password!" : null}
                         </div>
                         {/* <div className="invalid-feedback">

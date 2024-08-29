@@ -70,7 +70,7 @@ function Navbar() {
             <NavLink className="nav-link cart p-3" to={isAuthenticated ? "/cart" : "/login"}>
               <span className="badge rounded-pill badge-notification">
                 <i className="iconn bi bi-bag-check-fill fs-1">
-                  <span className="badge rounded-pill badge-notification bg-danger num">{isAuthenticated && product_by.products?.id_user_p !== null ? product_by.length : null}</span>
+                  <span className="badge rounded-pill badge-notification bg-danger num">{isAuthenticated && !(product_by[0]?.id_user_p === null) ? product_by.length : null}</span>
                 </i>
               </span>
             </NavLink>
