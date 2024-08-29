@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 // import { Link } from "react-router-dom";
 import "./style.css";
-import { useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticateUser } from "../6_redux_state_manegment/userReducer";
 
@@ -121,7 +121,7 @@ function Login() {
                       <div className="col-12">
                         <p className="small mb-0">
                           Don't have account?
-                          <a style={{ color: "rgb(151, 35, 35)" }} href="register">
+                          <a style={{ color: "rgb(151, 35, 35)" }} href="/register">
                             Create an account
                           </a>
                         </p>

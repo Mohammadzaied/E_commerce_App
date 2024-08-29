@@ -81,7 +81,7 @@ const Card = ({ id, img, description, discount, color, size, price, evaluation, 
             }}
           >
             <button className="btn btn-light border border-danger px-3 me-2 text-danger fs-4" onClick={handleButtonClick_watch}>
-              <i className={fill.includes(id) ? "bi bi-heart-fill" : "bi bi-heart"}></i>
+              <i className={fill.some((obj) => obj.id === id) ? "bi bi-heart-fill" : "bi bi-heart"}></i>
             </button>
 
             <Link

@@ -12,7 +12,7 @@ function Details() {
   const [selectedindexsize, setsize] = useState(0);
   const user_id = useSelector((state) => state.user.login.user_data);
   const product = useSelector((state) => state.product.searchResults[0]);
-  const w = useSelector((state) => state.product.clothes.data);
+  const { error, status } = useSelector((state) => state.user.add_pro);
 
   //const { status } = useSelector((state) => state.user.product_watch);
   const handleColorChange = (index) => {
@@ -35,11 +35,8 @@ function Details() {
     dispatch(add_product_by(data));
   };
   useEffect(() => {
-    //console.log("details", id_product);
-    //console.log("status", status);
     dispatch(search_item([id_product]));
     console.log("product det", product);
-    console.log("list", w);
     window.scrollTo(0, 0);
   }, [dispatch, id_product, product]);
   if (!product) return <div>.....lodaing</div>;

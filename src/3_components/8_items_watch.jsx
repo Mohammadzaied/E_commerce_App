@@ -13,12 +13,9 @@ export default function Items_watch() {
   const data = useSelector((state) => state.user.product_watch.data);
 
   const status = useSelector((state) => state.user.product_watch.status);
-  //const status_1 = useSelector((state) => state.product.clothes.status);
-  // const status_2 = useSelector((state) => state.product.watches.status);
-  // const status_3 = useSelector((state) => state.product.mobiles.status);
   const user_id = useSelector((state) => state.user.login.user_data);
   const dispatch = useDispatch();
-  const list_to_watch = useSelector((state) => state.product.searchResults);
+  //const list_to_watch = useSelector((state) => state.product.searchResults);
 
   // const list_to_watch = useMemo(() => {
   //   if (data.length > 0) {
@@ -28,15 +25,15 @@ export default function Items_watch() {
   // }, [clothes.data, data, mobiles.data, watches.data]);
 
   useEffect(() => {
-    if (data.length > 0 && status === "succeeded") {
-      dispatch(search_item(data));
-      console.log("data", data);
-      //console.log("status", list_to_watch);
-    }
+    // if (data.length > 0 && status === "succeeded") {
+    //   dispatch(search_item(data));
+    //   //console.log("status", list_to_watch);
+    // }
+    console.log("data", data);
   }, [data, dispatch, status]);
 
-  const [selectedColorIndex, setSelectedColorIndex] = useState(list_to_watch.map(() => 0));
-  const [selectedsizeIndex, setSelectedsizeIndex] = useState(list_to_watch.map(() => 0));
+  const [selectedColorIndex, setSelectedColorIndex] = useState(data.map(() => 0));
+  const [selectedsizeIndex, setSelectedsizeIndex] = useState(data.map(() => 0));
 
   const handleColorChange = (index, colorIndex) => {
     const newColorIndices = [...selectedColorIndex];
@@ -70,7 +67,7 @@ export default function Items_watch() {
       id_product: item.id,
       user_id: user_id,
     };
-    if (list_to_watch.length === 1) dispatch(search_item([]));
+    // if (list_to_watch.length === 1) dispatch(search_item([]));
     dispatch(add_remove_product_watch(data1));
   };
 
@@ -78,7 +75,7 @@ export default function Items_watch() {
     Aos.init({ duration: 2000 });
   }, [data]);
 
-  if (status === "loading" || (data.length > 0 && list_to_watch.length === 0))
+  if (status === "loading")
     return (
       <div className="d-flex justify-content-center mt-5 align-items-center">
         <div className="spinner-border text-danger" role="status">
@@ -92,10 +89,10 @@ export default function Items_watch() {
         <p>Error load Data</p>
       </div>
     );
-  else if (status === "succeeded" && list_to_watch.length > 0)
+  else if (status === "succeeded" && data.length > 0)
     return (
       <div className="items-watch">
-        {list_to_watch.map((item, index1) => (
+        {data.map((item, index1) => (
           <div data-aos="fade-up" key={index1} className="pt-2 mx-5 mb-5">
             <div className="show-watch row border rounded border-danger">
               <div className="col-md-6 px-5">
